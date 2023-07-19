@@ -25,7 +25,6 @@ All variables which can be overridden are stored in [defaults/main.yml](defaults
 | Name           | Default Value | Description                        |
 | -------------- | ------------- | -----------------------------------|
 | `proxy_env` | {} | Proxy environment variables for Client|
-| `minidlna_version` | 1.3.0 | MiniDLNA package version. Also accepts `latest` as parameter. |
 | `minidlna_config_file` | /etc/minidlna.conf | Config path |
 | `minidlna_log_dir` | "/var/log/minidlna" | Log path |
 | `minidlna_db_dir` | "/var/cache/minidlna" | DB dir |

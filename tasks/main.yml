@@ -1,10 +1,10 @@
 ---
 - name: install minidlna packages
   ansible.builtin.apt:
-    name: "minidlna={{ minidlna_version }}"
+    name: "minidlna"
     state: present
     update_cache: yes
-  when: ansible_os_family == 'Debain'
+  when: ansible_os_family == 'Debian'
   tags: minidlna
 
 - name: configure minidlna
@@ -15,6 +15,6 @@
     owner: "{{ minidlna_system_user }}"
     group: "{{ minidlna_system_group }}"
     mode: '0644'
-  when: ansible_os_family == 'Debain'
+  when: ansible_os_family == 'Debian'
   notify: restart minidlna
   tags: minidlna_config
