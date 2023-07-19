@@ -1,4 +1,5 @@
-# This is the configuration file for the MiniDLNA daemon, a DLNA/UPnP-AV media                                                                  [75/111]# server.
+# This is the configuration file for the MiniDLNA daemon, a DLNA/UPnP-AV media
+# server.
 #
 # Unless otherwise noted, the commented out options show their default value.
 #
@@ -14,13 +15,14 @@ user={{ minidlna_system_user }}
 # This option can be specified more than once if you want multiple directories
 # scanned.
 #
-# If you want to restrict a media_dir to a specific content type, you can                                                                               # prepend the directory name with a letter representing the type (A, P or V),
-# followed by a comma, as so:                                                                                                                           #   * "A" for audio    (eg. media_dir=A,/var/lib/minidlna/music)
+# If you want to restrict a media_dir to a specific content type, you can
+# prepend the directory name with a letter representing the type (A, P or V),
+# followed by a comma, as so:
+#   * "A" for audio    (eg. media_dir=A,/var/lib/minidlna/music)
 #   * "P" for pictures (eg. media_dir=P,/var/lib/minidlna/pictures)
 #   * "V" for video    (eg. media_dir=V,/var/lib/minidlna/videos)
 #   * "PV" for pictures and video (eg. media_dir=PV,/var/lib/minidlna/digital_camera)
-#media_dir=V,/var/lib/minidlna
-{% if minidlna_media_dirs defined %}
+{% if minidlna_media_dirs is defined %}
 {%   for media_dir in minidlna_media_dirs %}
 media_dir={{ media_dir.content_type }},{{ media_dir.folder }}
 {%   endfor %}
@@ -52,7 +54,8 @@ log_dir={{ minidlna_log_dir }}
 # The default is to log all types of messages at the "warn" level.
 #log_level=general,artwork,database,inotify,scanner,metadata,http,ssdp,tivo=warn
 
-# Use a different container as the root of the directory tree presented to                                                                      [21/111]# clients. The possible values are:
+# Use a different container as the root of the directory tree presented to
+# clients. The possible values are:
 #   * "." - standard container
 #   * "B" - "Browse Directory"
 #   * "M" - "Music"
@@ -89,7 +92,7 @@ model_name={{ minidlna_model_name }}
 
 # Model number the server reports to clients.
 # Defaults to the version number of minidlna.
-model_number={{ minidlna_version }}
+#model_number=
 
 # Automatic discovery of new files in the media_dir directory.
 inotify={{ minidlna_inotify }}
@@ -97,12 +100,9 @@ inotify={{ minidlna_inotify }}
 # List of file names to look for when searching for album art.
 # Names should be delimited with a forward slash ("/").
 # This option can be specified more than once.
-#album_art_names=Cover.jpg/cover.jpg/AlbumArtSmall.jpg/albumartsmall.jpg
-#album_art_names=AlbumArt.jpg/albumart.jpg/Album.jpg/album.jpg
-#album_art_names=Folder.jpg/folder.jpg/Thumb.jpg/thumb.jpg
-{% if minidlna_album_art_dirs defined %}
-{%   for album_art_dir in minidlna_album_art_dirs %}
-album_art_names={{ album_art_dir.names }}
+{% if minidlna_album_art_files is defined %}
+{%   for album_art_file in minidlna_album_art_files %}
+album_art_names={{ album_art_file.names }}
 {%   endfor %}
 {% endif %}
 
@@ -122,18 +122,18 @@ tivo_discovery={{ minidlna_tivo_discovery }}
 notify_interval={{ minidlna_notify_interval }}
 
 # Path to the MiniSSDPd socket, for MiniSSDPd support.
-{% if minidlna_minissdpdsocket | length > 0 %}
+{% if minidlna_minissdpdsocket | length %}
 minissdpdsocket={{ minidlna_minissdpdsocket }}
-{% elif %}
+{% else %}
 #minissdpdsocket=/run/minissdpd.sock
 {% endif %}
 
 # Always set SortCriteria to this value, regardless of the SortCriteria
 # passed by the client
 # e.g. force_sort_criteria=+upnp:class,+upnp:originalTrackNumber,+dc:title
-{% if minidlna_force_sort_criteria | length > 0 %}
+{% if minidlna_force_sort_criteria | length %}
 force_sort_criteria={{ minidlna_force_sort_criteria }}
-{% elif %}
+{% else %}
 #force_sort_criteria=
 {% endif %}
 
@@ -143,3 +143,5 @@ max_connections={{ minidlna_max_connections }}
 
 # set this to yes to allow symlinks that point outside user-defined media_dirs.
 wide_links={{ minidlna_wide_links }}
+
+

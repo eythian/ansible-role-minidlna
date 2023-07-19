@@ -31,7 +31,7 @@ All variables which can be overridden are stored in [defaults/main.yml](defaults
 | `minidlna_system_user` | "minidlna" | Default user |
 | `minidlna_system_group` | "minidlna" | Default group |
 | `minidlna_media_dirs` | {} | Media directorys |
-| `minidlna_album_art_dirs` | {} | Album art directorys |
+| `minidlna_album_art_files` | {} | Album art filenames |
 | `minidlna_merge_media_dirs` | "no" |  |
 | `minidlna_root_container` | "." |  |
 | `minidlna_network_interface` | "{{ ansible_default_ipv4.interface }}" |  |

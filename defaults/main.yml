@@ -8,7 +8,7 @@ minidlna_system_group: "{{ minidlna_group | default('minidlna') }}"
 minidlna_media_dirs:
   - content_type: P
     folder: /var/lib/minidlna
-minidlna_album_art_dirs:
+minidlna_album_art_files:
   - names: "Cover.jpg/cover.jpg/AlbumArtSmall.jpg/albumartsmall.jpg"
   - names: "AlbumArt.jpg/albumart.jpg/Album.jpg/album.jpg"
   - names: "Folder.jpg/folder.jpg/Thumb.jpg/thumb.jpg"
@@ -16,7 +16,7 @@ minidlna_merge_media_dirs: "no"
 minidlna_root_container: "."
 minidlna_network_interface: "{{ ansible_default_ipv4.interface }}"
 minidlna_serial: "{{ ansible_default_ipv4.macaddress }}"
-minidlna_port: 9500
+minidlna_port: 8200
 minidlna_presentation_url: "/"
 minidlna_friendly_name: "minidlna"
 minidlna_model_name: "Windows Media Connect compatible (MiniDLNA)"
